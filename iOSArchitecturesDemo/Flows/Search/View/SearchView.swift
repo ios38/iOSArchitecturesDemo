@@ -8,15 +8,36 @@
 
 import UIKit
 
+protocol SearchModeControlDelegate: class {
+    func searchModeSelected(_ searchMode: SearchMode) //searchModeControlSwitched
+}
+
+enum SearchMode {
+    case apps, songs
+}
+
 final class SearchView: UIView {
     
     // MARK: - Subviews
     
-    let searchModeControl = UISegmentedControl()
+    let searchModeControl = UISegmentedControl(items: ["Apps","Songs"])
     let searchBar = UISearchBar()
     let tableView = UITableView()
     let emptyResultView = UIView()
     let emptyResultLabel = UILabel()
+
+    var searchMode: SearchMode {
+        switch self.searchModeControl.selectedSegmentIndex {
+        case 0:
+            return .apps
+        case 1:
+            return .songs
+        default:
+            return .apps
+        }
+    }
+
+    weak var searchModeControlDelegate: SearchModeControlDelegate?
     
     // MARK: - Init
     
@@ -43,7 +64,8 @@ final class SearchView: UIView {
     
     private func addSearchModeControl() {
         self.searchModeControl.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(self.searchModeControl)
+        self.searchModeControl.selectedSegmentIndex = 0
+        self.searchModeControl.addTarget(self, action: #selector(self.searchModeControlSwitched(_:)), for: .valueChanged);        self.addSubview(self.searchModeControl)
     }
 
     private func addSearchBar() {
@@ -61,6 +83,10 @@ final class SearchView: UIView {
         self.addSubview(self.tableView)
     }
     
+    @objc func searchModeControlSwitched(_ sender: UISegmentedControl) {
+        self.searchModeControlDelegate?.searchModeSelected(self.searchMode)
+    }
+
     private func addEmptyResultView() {
         self.emptyResultView.translatesAutoresizingMaskIntoConstraints = false
         //self.emptyResultView.backgroundColor = .white
@@ -81,8 +107,8 @@ final class SearchView: UIView {
         
         NSLayoutConstraint.activate([
             self.searchModeControl.topAnchor.constraint(equalTo: self.topAnchor, constant: 8.0),
-            self.searchModeControl.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.searchModeControl.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.searchModeControl.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10.0),
+            self.searchModeControl.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10.0),
 
             self.searchBar.topAnchor.constraint(equalTo: self.searchModeControl.bottomAnchor, constant: 8.0),
             self.searchBar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),

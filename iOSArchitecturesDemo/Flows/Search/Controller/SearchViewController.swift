@@ -16,6 +16,8 @@ final class SearchViewController: UIViewController {
         return self.view as! SearchView
     }
     
+    private var searchMode: SearchMode = .apps
+    
     //private let searchService = ITunesSearchService()
     internal var searchResults = [ITunesApp](){
         didSet {
@@ -52,6 +54,7 @@ final class SearchViewController: UIViewController {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .dark
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.searchView.searchModeControlDelegate = self
         self.searchView.searchBar.delegate = self
         self.searchView.tableView.register(AppCell.self, forCellReuseIdentifier: Constants.reuseIdentifier)
         self.searchView.tableView.delegate = self
@@ -93,7 +96,15 @@ extension SearchViewController: UITableViewDelegate {
     }
 }
 
-//MARK: - UISearchBarDelegate
+//MARK: - UISegmentedControlDelegate
+extension SearchViewController: SearchModeControlDelegate {
+    
+    func searchModeSelected(_ searchMode: SearchMode) {
+        self.searchMode = searchMode
+        print("ViewController: searchModeSelected: \(self.searchMode)")
+    }
+}
+
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
