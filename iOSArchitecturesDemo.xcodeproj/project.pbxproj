@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5040892C2431D9C300709CB9 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040892B2431D9C300709CB9 /* SearchPresenter.swift */; };
+		505A53C3243329BD00E3C859 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505A53C2243329BD00E3C859 /* SearchBuilder.swift */; };
 		507D965D242F804A00D28C9C /* AppDetailHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D965C242F804A00D28C9C /* AppDetailHeaderViewController.swift */; };
 		507D965F242F809900D28C9C /* AppDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D965E242F809900D28C9C /* AppDetailHeaderView.swift */; };
 		507D9664242F865500D28C9C /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D9663242F865500D28C9C /* DescriptionViewController.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5040892B2431D9C300709CB9 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		505A53C2243329BD00E3C859 /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
 		507D965C242F804A00D28C9C /* AppDetailHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailHeaderViewController.swift; sourceTree = "<group>"; };
 		507D965E242F809900D28C9C /* AppDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailHeaderView.swift; sourceTree = "<group>"; };
 		507D9663242F865500D28C9C /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +87,21 @@
 				A067E149D296BC0C249FD11F /* Pods-iOSArchitecturesDemo.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		500D9DD22434470B0025A4D5 /* SongDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SongDetail;
+			sourceTree = "<group>";
+		};
+		5040892A2431D98800709CB9 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5040892B2431D9C300709CB9 /* SearchPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		507D9659242F7FA600D28C9C /* Header */ = {
@@ -175,6 +194,7 @@
 		E0E1D2A52034A3560011E01A /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				500D9DD22434470B0025A4D5 /* SongDetail */,
 				E0E1D2A62034A36C0011E01A /* Search */,
 				E0E1D2A72034A3780011E01A /* AppDetail */,
 			);
@@ -184,8 +204,10 @@
 		E0E1D2A62034A36C0011E01A /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				5040892A2431D98800709CB9 /* Presenter */,
 				F8A97B3622498F0C00FB2C0E /* View */,
 				F8114FBF22A3E5D500102830 /* Controller */,
+				505A53C2243329BD00E3C859 /* SearchBuilder.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -474,6 +496,7 @@
 			files = (
 				E0E1D399203AE62E0011E01A /* ITunesApp.swift in Sources */,
 				507D965F242F809900D28C9C /* AppDetailHeaderView.swift in Sources */,
+				5040892C2431D9C300709CB9 /* SearchPresenter.swift in Sources */,
 				F8A97B352249898E00FB2C0E /* AppCell.swift in Sources */,
 				507D965D242F804A00D28C9C /* AppDetailHeaderViewController.swift in Sources */,
 				F8114FC522A3E77500102830 /* AppDetailView.swift in Sources */,
@@ -482,6 +505,7 @@
 				E0E1D3D4203C4AA50011E01A /* UIColor+Extensions.swift in Sources */,
 				E0E1D3D1203C48D70011E01A /* AppDetailViewController.swift in Sources */,
 				E0E1D358203ADC590011E01A /* NetworkManager.swift in Sources */,
+				505A53C3243329BD00E3C859 /* SearchBuilder.swift in Sources */,
 				E0E1D39C203AE6420011E01A /* ITunesSong.swift in Sources */,
 				E0E1D2952034A3350011E01A /* SearchViewController.swift in Sources */,
 				E0E1D39F203AE7400011E01A /* ImageDownloader.swift in Sources */,
@@ -629,6 +653,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/iOSArchitecturesDemo/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ekireev.iOSArchitecturesDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -644,6 +669,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/iOSArchitecturesDemo/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ekireev.iOSArchitecturesDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
