@@ -1,14 +1,14 @@
 //
-//  AppCell.swift
+//  SongCell.swift
 //  iOSArchitecturesDemo
 //
-//  Created by Evgeny Kireev on 01/03/2019.
-//  Copyright © 2019 ekireev. All rights reserved.
+//  Created by Maksim Romanov on 01.04.2020.
+//  Copyright © 2020 ekireev. All rights reserved.
 //
 
 import UIKit
 
-final class AppCell: UITableViewCell {
+final class SongCell: UITableViewCell {
     
     // MARK: - Subviews
     
@@ -50,7 +50,7 @@ final class AppCell: UITableViewCell {
     
     // MARK: - Methods
     
-    func configure(with cellModel: AppCellModel) {
+    func configure(with cellModel: SongCellModel) {
         self.titleLabel.text = cellModel.title
         self.subtitleLabel.text = cellModel.subtitle
         self.ratingLabel.text = cellModel.rating

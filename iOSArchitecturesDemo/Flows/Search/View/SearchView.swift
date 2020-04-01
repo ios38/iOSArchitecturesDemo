@@ -65,7 +65,8 @@ final class SearchView: UIView {
     private func addSearchModeControl() {
         self.searchModeControl.translatesAutoresizingMaskIntoConstraints = false
         self.searchModeControl.selectedSegmentIndex = 0
-        self.searchModeControl.addTarget(self, action: #selector(self.searchModeControlSwitched(_:)), for: .valueChanged);        self.addSubview(self.searchModeControl)
+        self.searchModeControl.addTarget(self, action: #selector(self.searchModeControlSwitched(_:)), for: .valueChanged)
+        self.addSubview(self.searchModeControl)
     }
 
     private func addSearchBar() {
