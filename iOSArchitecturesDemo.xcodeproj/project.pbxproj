@@ -16,6 +16,7 @@
 		507D9668243073CC00D28C9C /* iTunesAppKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D9667243073CC00D28C9C /* iTunesAppKeys.swift */; };
 		507D966A2434C2DB00D28C9C /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D96692434C2DB00D28C9C /* SongCell.swift */; };
 		507D966C2434C2FB00D28C9C /* SongCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D966B2434C2FB00D28C9C /* SongCellModel.swift */; };
+		507D96792435959A00D28C9C /* SongDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D96782435959A00D28C9C /* SongDetailViewController.swift */; };
 		E0E1D2932034A3350011E01A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E1D2922034A3350011E01A /* AppDelegate.swift */; };
 		E0E1D2952034A3350011E01A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E1D2942034A3350011E01A /* SearchViewController.swift */; };
 		E0E1D29A2034A3350011E01A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E1D2992034A3350011E01A /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		507D9667243073CC00D28C9C /* iTunesAppKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAppKeys.swift; sourceTree = "<group>"; };
 		507D96692434C2DB00D28C9C /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		507D966B2434C2FB00D28C9C /* SongCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCellModel.swift; sourceTree = "<group>"; };
+		507D96782435959A00D28C9C /* SongDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDetailViewController.swift; sourceTree = "<group>"; };
 		8BE349225151AE13B1EDE333 /* Pods-iOSArchitecturesDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSArchitecturesDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSArchitecturesDemo/Pods-iOSArchitecturesDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		8EEA6AF9F424A0D5873D2723 /* Pods_iOSArchitecturesDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSArchitecturesDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A067E149D296BC0C249FD11F /* Pods-iOSArchitecturesDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSArchitecturesDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSArchitecturesDemo/Pods-iOSArchitecturesDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,13 +93,6 @@
 				A067E149D296BC0C249FD11F /* Pods-iOSArchitecturesDemo.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		500D9DD22434470B0025A4D5 /* SongDetail */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SongDetail;
 			sourceTree = "<group>";
 		};
 		5040892A2431D98800709CB9 /* Presenter */ = {
@@ -158,6 +153,46 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		507D96772435958500D28C9C /* SongDetail */ = {
+			isa = PBXGroup;
+			children = (
+				507D967E2435964A00D28C9C /* Header */,
+				507D967B243595C000D28C9C /* Controller */,
+			);
+			path = SongDetail;
+			sourceTree = "<group>";
+		};
+		507D967B243595C000D28C9C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				507D96782435959A00D28C9C /* SongDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		507D967E2435964A00D28C9C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				507D96802435966000D28C9C /* Controller */,
+				507D967F2435965700D28C9C /* View */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		507D967F2435965700D28C9C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		507D96802435966000D28C9C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		DB95456C2F2DCD400ABCE8E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,8 +233,8 @@
 		E0E1D2A52034A3560011E01A /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				500D9DD22434470B0025A4D5 /* SongDetail */,
 				E0E1D2A62034A36C0011E01A /* Search */,
+				507D96772435958500D28C9C /* SongDetail */,
 				E0E1D2A72034A3780011E01A /* AppDetail */,
 			);
 			path = Flows;
@@ -517,6 +552,7 @@
 				E0E1D39C203AE6420011E01A /* ITunesSong.swift in Sources */,
 				E0E1D2952034A3350011E01A /* SearchViewController.swift in Sources */,
 				E0E1D39F203AE7400011E01A /* ImageDownloader.swift in Sources */,
+				507D96792435959A00D28C9C /* SongDetailViewController.swift in Sources */,
 				507D9668243073CC00D28C9C /* iTunesAppKeys.swift in Sources */,
 				507D9664242F865500D28C9C /* DescriptionViewController.swift in Sources */,
 				F8114FBE22A3DBF400102830 /* SearchView.swift in Sources */,
