@@ -12,7 +12,7 @@ final class SongDetailViewController: UIViewController {
     
     public var song: ITunesSong
         
-    //lazy var headerViewController = SongDetailHeaderViewController(song: song)
+    lazy var headerViewController = SongDetailHeaderViewController(song: song)
 
     init(song: ITunesSong) {
         self.song = song
@@ -28,12 +28,12 @@ final class SongDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureNavigationController()
-        //self.addHeaderViewController()
+        self.addHeaderViewController()
         //self.addDescriptionViewController()
     }
     
     // MARK: - Private
-    /*
+    
     private func addHeaderViewController() {
         self.addChild(self.headerViewController)
         self.view.addSubview(self.headerViewController.view)
@@ -45,7 +45,7 @@ final class SongDetailViewController: UIViewController {
             self.headerViewController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             self.headerViewController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor)
             ])
-    }*/
+    }
     /*
     private func addDescriptionViewController() {
         // TODO: ДЗ, сделать другие сабмодули
@@ -65,7 +65,7 @@ final class SongDetailViewController: UIViewController {
     }*/
 
     private func configureNavigationController() {
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGray;
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationItem.largeTitleDisplayMode = .never
     }
     

@@ -1,14 +1,14 @@
 //
-//  AppDetailHeaderView.swift
+//  SongDetailHeaderView.swift
 //  iOSArchitecturesDemo
 //
-//  Created by Maksim Romanov on 28.03.2020.
+//  Created by Maksim Romanov on 02.04.2020.
 //  Copyright © 2020 ekireev. All rights reserved.
 //
 
 import UIKit
 
-class AppDetailHeaderView: UIView {
+class SongDetailHeaderView: UIView {
     
     // MARK: - Subviews
     
@@ -37,6 +37,14 @@ class AppDetailHeaderView: UIView {
         return label
     }()
     
+    private(set) lazy var ratingLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .lightGray
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        return label
+    }()
+    
     private(set) lazy var openButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -44,14 +52,6 @@ class AppDetailHeaderView: UIView {
         button.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         button.layer.cornerRadius = 16.0
         return button
-    }()
-    
-    private(set) lazy var ratingLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .lightGray
-        label.font = UIFont.boldSystemFont(ofSize: 20.0)
-        return label
     }()
     
     override init(frame: CGRect) {
@@ -70,8 +70,8 @@ class AppDetailHeaderView: UIView {
         self.addSubview(self.imageView)
         self.addSubview(self.titleLabel)
         self.addSubview(self.subtitleLabel)
-        self.addSubview(self.openButton)
         self.addSubview(self.ratingLabel)
+        //self.addSubview(self.openButton)
         
         NSLayoutConstraint.activate([
             self.imageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 12.0),
@@ -83,20 +83,20 @@ class AppDetailHeaderView: UIView {
             self.titleLabel.leftAnchor.constraint(equalTo: self.imageView.rightAnchor, constant: 16.0),
             self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16.0),
             
-            self.subtitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 12.0),
+            self.subtitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8.0),
             self.subtitleLabel.leftAnchor.constraint(equalTo: self.titleLabel.leftAnchor),
             self.subtitleLabel.rightAnchor.constraint(equalTo: self.titleLabel.rightAnchor),
             
-            self.openButton.leftAnchor.constraint(equalTo: self.imageView.rightAnchor, constant: 16.0),
-            self.openButton.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor),
-            self.openButton.widthAnchor.constraint(equalToConstant: 80.0),
-            self.openButton.heightAnchor.constraint(equalToConstant: 32.0),
+            self.ratingLabel.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 8.0),
+            self.ratingLabel.leftAnchor.constraint(equalTo: self.subtitleLabel.leftAnchor),
+            self.ratingLabel.rightAnchor.constraint(equalTo: self.subtitleLabel.rightAnchor),
+            //self.ratingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+
+            //self.openButton.leftAnchor.constraint(equalTo: self.imageView.rightAnchor, constant: 16.0),
+            //self.openButton.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor),
+            //self.openButton.widthAnchor.constraint(equalToConstant: 80.0),
+            //self.openButton.heightAnchor.constraint(equalToConstant: 32.0)
             
-            self.ratingLabel.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 24.0),
-            self.ratingLabel.leftAnchor.constraint(equalTo: self.imageView.leftAnchor),
-            self.ratingLabel.widthAnchor.constraint(equalToConstant: 100.0),
-            
-            self.ratingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }

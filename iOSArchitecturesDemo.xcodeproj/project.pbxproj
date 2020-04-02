@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500D9DD42435AE780025A4D5 /* SongDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500D9DD32435AE780025A4D5 /* SongDetailHeaderView.swift */; };
+		500D9DD72435AE9D0025A4D5 /* SongDetailHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500D9DD62435AE9D0025A4D5 /* SongDetailHeaderViewController.swift */; };
 		5040892C2431D9C300709CB9 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040892B2431D9C300709CB9 /* SearchPresenter.swift */; };
 		505A53C3243329BD00E3C859 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505A53C2243329BD00E3C859 /* SearchBuilder.swift */; };
 		507D965D242F804A00D28C9C /* AppDetailHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D965C242F804A00D28C9C /* AppDetailHeaderViewController.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		500D9DD32435AE780025A4D5 /* SongDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailHeaderView.swift; sourceTree = "<group>"; };
+		500D9DD62435AE9D0025A4D5 /* SongDetailHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailHeaderViewController.swift; sourceTree = "<group>"; };
 		5040892B2431D9C300709CB9 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		505A53C2243329BD00E3C859 /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
 		507D965C242F804A00D28C9C /* AppDetailHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailHeaderViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,31 @@
 				A067E149D296BC0C249FD11F /* Pods-iOSArchitecturesDemo.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		500D9DD52435AE7F0025A4D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				500D9DD32435AE780025A4D5 /* SongDetailHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		500D9DD82435AEA50025A4D5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				500D9DD62435AE9D0025A4D5 /* SongDetailHeaderViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		500D9DD92435AEC50025A4D5 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				500D9DD52435AE7F0025A4D5 /* View */,
+				500D9DD82435AEA50025A4D5 /* Controller */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		5040892A2431D98800709CB9 /* Presenter */ = {
@@ -156,8 +185,8 @@
 		507D96772435958500D28C9C /* SongDetail */ = {
 			isa = PBXGroup;
 			children = (
-				507D967E2435964A00D28C9C /* Header */,
 				507D967B243595C000D28C9C /* Controller */,
+				500D9DD92435AEC50025A4D5 /* Header */,
 			);
 			path = SongDetail;
 			sourceTree = "<group>";
@@ -166,29 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				507D96782435959A00D28C9C /* SongDetailViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		507D967E2435964A00D28C9C /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				507D96802435966000D28C9C /* Controller */,
-				507D967F2435965700D28C9C /* View */,
-			);
-			path = Header;
-			sourceTree = "<group>";
-		};
-		507D967F2435965700D28C9C /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		507D96802435966000D28C9C /* Controller */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -554,8 +560,10 @@
 				E0E1D39F203AE7400011E01A /* ImageDownloader.swift in Sources */,
 				507D96792435959A00D28C9C /* SongDetailViewController.swift in Sources */,
 				507D9668243073CC00D28C9C /* iTunesAppKeys.swift in Sources */,
+				500D9DD42435AE780025A4D5 /* SongDetailHeaderView.swift in Sources */,
 				507D9664242F865500D28C9C /* DescriptionViewController.swift in Sources */,
 				F8114FBE22A3DBF400102830 /* SearchView.swift in Sources */,
+				500D9DD72435AE9D0025A4D5 /* SongDetailHeaderViewController.swift in Sources */,
 				E0E1D395203AE5E20011E01A /* ITunesSearchResult.swift in Sources */,
 				E0E1D392203AE58B0011E01A /* ITunesSearchService.swift in Sources */,
 				E0E1D2932034A3350011E01A /* AppDelegate.swift in Sources */,

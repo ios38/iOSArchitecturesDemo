@@ -65,7 +65,7 @@ final class AppDetailViewController: UIViewController {
        }
 
     private func configureNavigationController() {
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGray;
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationItem.largeTitleDisplayMode = .never
     }
     
