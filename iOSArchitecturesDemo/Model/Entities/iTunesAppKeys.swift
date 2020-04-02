@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Welcome {
+struct iTunesApp {
     let screenshotUrls, ipadScreenshotUrls: [String]
     let appletvScreenshotUrls: [String] //[JSONAny]
     let artworkUrl60, artworkUrl512, artworkUrl100: String

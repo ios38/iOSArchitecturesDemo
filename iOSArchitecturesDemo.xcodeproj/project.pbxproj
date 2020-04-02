@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		500D9DD42435AE780025A4D5 /* SongDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500D9DD32435AE780025A4D5 /* SongDetailHeaderView.swift */; };
 		500D9DD72435AE9D0025A4D5 /* SongDetailHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500D9DD62435AE9D0025A4D5 /* SongDetailHeaderViewController.swift */; };
+		500D9DDB2435C1EA0025A4D5 /* iTunesSongKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500D9DDA2435C1EA0025A4D5 /* iTunesSongKeys.swift */; };
 		5040892C2431D9C300709CB9 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040892B2431D9C300709CB9 /* SearchPresenter.swift */; };
 		505A53C3243329BD00E3C859 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505A53C2243329BD00E3C859 /* SearchBuilder.swift */; };
 		507D965D242F804A00D28C9C /* AppDetailHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D965C242F804A00D28C9C /* AppDetailHeaderViewController.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		500D9DD32435AE780025A4D5 /* SongDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailHeaderView.swift; sourceTree = "<group>"; };
 		500D9DD62435AE9D0025A4D5 /* SongDetailHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailHeaderViewController.swift; sourceTree = "<group>"; };
+		500D9DDA2435C1EA0025A4D5 /* iTunesSongKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSongKeys.swift; sourceTree = "<group>"; };
 		5040892B2431D9C300709CB9 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		505A53C2243329BD00E3C859 /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
 		507D965C242F804A00D28C9C /* AppDetailHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailHeaderViewController.swift; sourceTree = "<group>"; };
@@ -358,8 +360,9 @@
 			isa = PBXGroup;
 			children = (
 				E0E1D398203AE62E0011E01A /* ITunesApp.swift */,
-				507D9667243073CC00D28C9C /* iTunesAppKeys.swift */,
 				E0E1D39B203AE6420011E01A /* ITunesSong.swift */,
+				507D9667243073CC00D28C9C /* iTunesAppKeys.swift */,
+				500D9DDA2435C1EA0025A4D5 /* iTunesSongKeys.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				E0E1D2932034A3350011E01A /* AppDelegate.swift in Sources */,
 				E0E1D384203AE3620011E01A /* AppStartManager.swift in Sources */,
 				507D96662430689D00D28C9C /* AppDetailDescriptionView.swift in Sources */,
+				500D9DDB2435C1EA0025A4D5 /* iTunesSongKeys.swift in Sources */,
 				F8114FC122A3E5EE00102830 /* AppCellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
