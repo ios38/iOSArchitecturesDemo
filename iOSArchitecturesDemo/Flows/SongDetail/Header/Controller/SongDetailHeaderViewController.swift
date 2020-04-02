@@ -47,9 +47,9 @@ final class SongDetailHeaderViewController: UIViewController {
     
     private func fillData() {
         self.downloadImage()
-        self.songDetailHeaderView.titleLabel.text = song.trackName
-        self.songDetailHeaderView.subtitleLabel.text = song.artistName
-        self.songDetailHeaderView.ratingLabel.text = song.collectionName
+        self.songDetailHeaderView.trackNameLabel.text = song.trackName
+        self.songDetailHeaderView.artistNameLabel.text = song.artistName
+        self.songDetailHeaderView.collectionNameLabel.text = song.collectionName
         self.songDetailHeaderView.genreLabel.text = song.primaryGenreName
         self.songDetailHeaderView.releaseDateLabel.text = " • " + song.releaseDate
     }

@@ -9,16 +9,16 @@
 import Foundation
 
 struct SongCellModel {
-    let title: String
-    let subtitle: String?
-    let rating: String?
+    let trackName: String
+    let artistName: String?
+    let collectionName: String?
 }
 
 final class SongCellModelFactory {
     
     static func cellModel(from model: ITunesSong) -> SongCellModel {
-        return SongCellModel(title: model.trackName,
-                             subtitle: model.artistName,
-                             rating: model.collectionName)
+        return SongCellModel(trackName: model.trackName,
+                             artistName: model.artistName,
+                             collectionName: model.collectionName)
     }
 }
