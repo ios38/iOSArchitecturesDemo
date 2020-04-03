@@ -15,7 +15,7 @@ final class SongDetailHeaderViewController: UIViewController {
     private let song: ITunesSong
     
     private let imageDownloader = ImageDownloader()
-    
+
     private var songDetailHeaderView: SongDetailHeaderView {
         return self.view as! SongDetailHeaderView
     }
@@ -56,7 +56,8 @@ final class SongDetailHeaderViewController: UIViewController {
     
     private func downloadImage() {
         guard let url = self.song.artwork else { return }
-        self.imageDownloader.getImage(fromUrl: url) { [weak self] (image, _) in
+        let imageDownloaderProxy = ImageDownloaderProxy(imageDownloader: imageDownloader)
+        imageDownloaderProxy.getImage(fromUrl: url) { [weak self] (image, _) in
             self?.songDetailHeaderView.imageView.image = image
         }
     }
