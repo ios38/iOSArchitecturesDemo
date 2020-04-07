@@ -18,7 +18,7 @@ final class SearchViewController: UIViewController {
     
     private var searchMode: SearchMode = .apps
     
-    internal var searchAppResults = [ITunesApp](){
+    internal var searchAppResults = [SearchAppCellModel](){
         didSet {
             didSetSearchResults()
         }
@@ -30,20 +30,25 @@ final class SearchViewController: UIViewController {
         }
     }
 
-    
-    var searchPresenter: SearchViewOutput?
-
     private struct Constants {
         static let appReuseId = "appReuseId"
         static let songReuseId = "songReuseId"
     }
-    
-    
+    /*
+    var searchPresenter: SearchViewOutput?
+
     init(presenter: SearchViewOutput) {
         self.searchPresenter = presenter
         super.init(nibName: nil, bundle: nil)
-    }
+    }*/
     
+    private let viewModel: SearchViewModel
+
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -65,6 +70,7 @@ final class SearchViewController: UIViewController {
         self.searchView.tableView.register(SongCell.self, forCellReuseIdentifier: Constants.songReuseId)
         self.searchView.tableView.delegate = self
         self.searchView.tableView.dataSource = self
+        self.bindViewModel()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,10 +78,51 @@ final class SearchViewController: UIViewController {
         self.throbber(show: false)
     }
     
-    func didSetSearchResults() {
+    private func didSetSearchResults() {
         self.searchView.tableView.isHidden = false
         self.searchView.tableView.reloadData()
         self.searchView.searchBar.resignFirstResponder()
+    }
+
+    private func throbber(show: Bool) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = show
+    }
+    
+    private func showError(error: Error) {
+        let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+        let actionOk = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(actionOk)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func showNoResults() {
+        self.searchView.emptyResultView.isHidden = false
+    }
+    
+    private func hideNoResults() {
+        self.searchView.emptyResultView.isHidden = true
+    }
+    
+    private func bindViewModel() {
+        // Во время загрузки данных показываем индикатор загрузки
+        self.viewModel.isLoading.addObserver(self) { [weak self] (isLoading, _) in
+            self?.throbber(show: isLoading)
+        }
+        // Если пришла ошибка, то отобразим ее в виде алерта
+        self.viewModel.error.addObserver(self) { [weak self] (error, _) in
+            if let error = error {
+                self?.showError(error: error)
+            }
+        }
+        // Если вью-модель указывает, что нужно показать экран пустых результатов, то делаем это
+        self.viewModel.showEmptyResults.addObserver(self) { [weak self] (showEmptyResults, _) in
+            self?.searchView.emptyResultView.isHidden = !showEmptyResults
+            self?.searchView.tableView.isHidden = showEmptyResults
+        }
+        // При обновлении данных, которые нужно отображать в ячейках, сохраняем их и перезагружаем tableView
+        self.viewModel.cellModels.addObserver(self) { [weak self] (searchAppResults, _) in
+            self?.searchAppResults = searchAppResults
+        }
     }
 }
 
@@ -106,19 +153,38 @@ extension SearchViewController: UITableViewDataSource {
                 return dequeuedCell
             }
             let app = self.searchAppResults[indexPath.row]
-            let cellModel = AppCellModelFactory.cellModel(from: app)
-            cell.configure(with: cellModel)
+            //let cellModel = AppCellModelFactory.cellModel(from: app)
+            //cell.configure(with: cellModel)
+            self.configure(cell: cell, with: app)
             return cell
 
         case .songs:
             let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: Constants.songReuseId, for: indexPath)
             let songCell = dequeuedCell as! SongCell
-            let song = self.searchSongResults[indexPath.row]
-            print("ViewController: song: \(song)")
-            let cellModel = SongCellModelFactory.cellModel(from: song)
-            print("ViewController: song: \(cellModel)")
-            songCell.configure(with: cellModel)
+            //let song = self.searchSongResults[indexPath.row]
+            //print("ViewController: song: \(song)")
+            //let cellModel = SongCellModelFactory.cellModel(from: song)
+            //print("ViewController: song: \(cellModel)")
+            //songCell.configure(with: cellModel)
             return songCell
+        }
+    }
+
+    private func configure(cell: AppCell, with app: SearchAppCellModel) {
+        cell.onDownloadButtonTap = { [weak self] in
+            self?.viewModel.didTapDownloadApp(app)
+        }
+        cell.titleLabel.text = app.appName
+        cell.subtitleLabel.text = app.company
+        cell.ratingLabel.text = app.averageRating >>- { "\($0)" }
+        switch app.downloadState {
+        case .notStarted:
+            cell.downloadProgressLabel.text = nil
+        case .inProgress(let progress):
+            let progressToShow = round(progress * 100.0) / 100.0
+            cell.downloadProgressLabel.text = "\(progressToShow)"
+        case .downloaded:
+            cell.downloadProgressLabel.text = "Загружено"
         }
     }
 }
@@ -132,10 +198,11 @@ extension SearchViewController: UITableViewDelegate {
         switch searchMode {
         case .apps:
             let app = searchAppResults[indexPath.row]
-            self.searchPresenter?.viewDidSelectApp(app)
+            self.viewModel.didSelectApp(app)
+            //self.searchPresenter?.viewDidSelectApp(app)
         case .songs:
             let song = searchSongResults[indexPath.row]
-            self.searchPresenter?.viewDidSelectSong(song)
+            //self.searchPresenter?.viewDidSelectSong(song)
         }
     }
 }
@@ -163,14 +230,17 @@ extension SearchViewController: UISearchBarDelegate {
         }
         switch searchMode {
         case .apps:
-            self.searchPresenter?.viewDidSearchApp(with: query)
+            self.viewModel.search(for: query)
+            //self.searchPresenter?.viewDidSearchApp(with: query)
         case .songs:
-            self.searchPresenter?.viewDidSearchSong(with: query)
+            self.viewModel.search(for: query)
+            //self.searchPresenter?.viewDidSearchSong(with: query)
         }
     }
 }
 
 // MARK: - SearchViewInput
+/*
 extension SearchViewController : SearchViewInput {
     
     
@@ -192,33 +262,26 @@ extension SearchViewController : SearchViewInput {
     func hideNoResults() {
         self.searchView.emptyResultView.isHidden = true
     }
-    /*
-    func requestApps(with query: String) {
-        self.throbber(show: true)
-        self.searchResults = []
-        self.searchView.tableView.reloadData()
-        
-        self.searchService.getApps(forQuery: query) { [weak self] result in
-            guard let self = self else { return }
-            self.throbber(show: false)
-            result
-                .withValue { apps in
-                    guard !apps.isEmpty else {
-                        self.searchResults = []
-                        self.showNoResults()
-                        return
-                    }
-                    self.hideNoResults()
-                    self.searchResults = apps
-                    
-                    self.searchView.tableView.isHidden = false
-                    self.searchView.tableView.reloadData()
-                    
-                    self.searchView.searchBar.resignFirstResponder()
-                }
-                .withError {
-                    self.showError(error: $0)
-                }
+    
+    private func bindViewModel() {
+        // Во время загрузки данных показываем индикатор загрузки
+        self.viewModel.isLoading.addObserver(self) { [weak self] (isLoading, _) in
+            self?.throbber(show: isLoading)
         }
-    }*/
-}
+        // Если пришла ошибка, то отобразим ее в виде алерта
+        self.viewModel.error.addObserver(self) { [weak self] (error, _) in
+            if let error = error {
+                self?.showError(error: error)
+            }
+        }
+        // Если вью-модель указывает, что нужно показать экран пустых результатов, то делаем это
+        self.viewModel.showEmptyResults.addObserver(self) { [weak self] (showEmptyResults, _) in
+            self?.searchView.emptyResultView.isHidden = !showEmptyResults
+            self?.searchView.tableView.isHidden = showEmptyResults
+        }
+        // При обновлении данных, которые нужно отображать в ячейках, сохраняем их и перезагружаем tableView
+        self.viewModel.cellModels.addObserver(self) { [weak self] (searchResults, _) in
+            self?.searchResults = searchResults
+        }
+    }
+}*/
