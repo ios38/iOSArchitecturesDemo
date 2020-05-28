@@ -15,7 +15,7 @@ final class SongDetailHeaderViewController: UIViewController {
     private let song: ITunesSong
     
     private let imageDownloader = ImageDownloader()
-    
+
     private var songDetailHeaderView: SongDetailHeaderView {
         return self.view as! SongDetailHeaderView
     }
@@ -47,16 +47,17 @@ final class SongDetailHeaderViewController: UIViewController {
     
     private func fillData() {
         self.downloadImage()
-        self.songDetailHeaderView.titleLabel.text = song.trackName
-        self.songDetailHeaderView.subtitleLabel.text = song.artistName
-        self.songDetailHeaderView.ratingLabel.text = song.collectionName
+        self.songDetailHeaderView.trackNameLabel.text = song.trackName
+        self.songDetailHeaderView.artistNameLabel.text = song.artistName
+        self.songDetailHeaderView.collectionNameLabel.text = song.collectionName
         self.songDetailHeaderView.genreLabel.text = song.primaryGenreName
         self.songDetailHeaderView.releaseDateLabel.text = " • " + song.releaseDate
     }
     
     private func downloadImage() {
         guard let url = self.song.artwork else { return }
-        self.imageDownloader.getImage(fromUrl: url) { [weak self] (image, _) in
+        let imageDownloaderProxy = ImageDownloaderProxy(imageDownloader: imageDownloader)
+        imageDownloaderProxy.getImage(fromUrl: url) { [weak self] (image, _) in
             self?.songDetailHeaderView.imageView.image = image
         }
     }

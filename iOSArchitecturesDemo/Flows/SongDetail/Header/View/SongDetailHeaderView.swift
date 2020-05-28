@@ -20,7 +20,7 @@ class SongDetailHeaderView: UIView {
         return imageView
     }()
     
-    private(set) lazy var titleLabel: UILabel = {
+    private(set) lazy var trackNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
@@ -29,7 +29,7 @@ class SongDetailHeaderView: UIView {
         return label
     }()
     
-    private(set) lazy var subtitleLabel: UILabel = {
+    private(set) lazy var artistNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
@@ -37,7 +37,7 @@ class SongDetailHeaderView: UIView {
         return label
     }()
     
-    private(set) lazy var ratingLabel: UILabel = {
+    private(set) lazy var collectionNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
@@ -85,9 +85,9 @@ class SongDetailHeaderView: UIView {
     
     private func setupLayout() {
         self.addSubview(self.imageView)
-        self.addSubview(self.titleLabel)
-        self.addSubview(self.subtitleLabel)
-        self.addSubview(self.ratingLabel)
+        self.addSubview(self.trackNameLabel)
+        self.addSubview(self.artistNameLabel)
+        self.addSubview(self.collectionNameLabel)
         self.addSubview(self.genreLabel)
         self.addSubview(self.releaseDateLabel)
         //self.addSubview(self.openButton)
@@ -99,21 +99,21 @@ class SongDetailHeaderView: UIView {
             self.imageView.widthAnchor.constraint(equalToConstant: 120.0),
             self.imageView.heightAnchor.constraint(equalToConstant: 120.0),
             
-            self.titleLabel.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 12.0),
-            self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
-            self.titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16.0),
+            self.trackNameLabel.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 12.0),
+            self.trackNameLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16.0),
+            self.trackNameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16.0),
             
-            self.subtitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8.0),
-            self.subtitleLabel.leftAnchor.constraint(equalTo: self.titleLabel.leftAnchor),
-            self.subtitleLabel.rightAnchor.constraint(equalTo: self.titleLabel.rightAnchor),
+            self.artistNameLabel.topAnchor.constraint(equalTo: self.trackNameLabel.bottomAnchor, constant: 8.0),
+            self.artistNameLabel.leftAnchor.constraint(equalTo: self.trackNameLabel.leftAnchor),
+            self.artistNameLabel.rightAnchor.constraint(equalTo: self.trackNameLabel.rightAnchor),
             
-            self.ratingLabel.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 8.0),
-            self.ratingLabel.leftAnchor.constraint(equalTo: self.subtitleLabel.leftAnchor),
-            self.ratingLabel.rightAnchor.constraint(equalTo: self.subtitleLabel.rightAnchor),
+            self.collectionNameLabel.topAnchor.constraint(equalTo: self.artistNameLabel.bottomAnchor, constant: 8.0),
+            self.collectionNameLabel.leftAnchor.constraint(equalTo: self.artistNameLabel.leftAnchor),
+            self.collectionNameLabel.rightAnchor.constraint(equalTo: self.artistNameLabel.rightAnchor),
             //self.ratingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
 
-            self.genreLabel.topAnchor.constraint(equalTo: self.ratingLabel.bottomAnchor, constant: 8.0),
-            self.genreLabel.leftAnchor.constraint(equalTo: self.subtitleLabel.leftAnchor),
+            self.genreLabel.topAnchor.constraint(equalTo: self.collectionNameLabel.bottomAnchor, constant: 8.0),
+            self.genreLabel.leftAnchor.constraint(equalTo: self.artistNameLabel.leftAnchor),
             //self.genreLabel.rightAnchor.constraint(equalTo: self.subtitleLabel.rightAnchor),
 
             self.releaseDateLabel.topAnchor.constraint(equalTo: self.genreLabel.topAnchor),

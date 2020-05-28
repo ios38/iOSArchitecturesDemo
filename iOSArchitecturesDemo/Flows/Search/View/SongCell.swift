@@ -12,7 +12,7 @@ final class SongCell: UITableViewCell {
     
     // MARK: - Subviews
     
-    private(set) lazy var titleLabel: UILabel = {
+    private(set) lazy var trackName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
@@ -20,7 +20,7 @@ final class SongCell: UITableViewCell {
         return label
     }()
     
-    private(set) lazy var subtitleLabel: UILabel = {
+    private(set) lazy var artistName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
@@ -28,7 +28,7 @@ final class SongCell: UITableViewCell {
         return label
     }()
     
-    private(set) lazy var ratingLabel: UILabel = {
+    private(set) lazy var collectionName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
@@ -51,47 +51,47 @@ final class SongCell: UITableViewCell {
     // MARK: - Methods
     
     func configure(with cellModel: SongCellModel) {
-        self.titleLabel.text = cellModel.title
-        self.subtitleLabel.text = cellModel.subtitle
-        self.ratingLabel.text = cellModel.rating
+        self.trackName.text = cellModel.trackName
+        self.artistName.text = cellModel.artistName
+        self.collectionName.text = cellModel.collectionName
     }
     
     // MARK: - UI
     
     override func prepareForReuse() {
-        [self.titleLabel, self.subtitleLabel, self.ratingLabel].forEach { $0.text = nil }
+        [self.trackName, self.artistName, self.collectionName].forEach { $0.text = nil }
     }
     
     private func configureUI() {
-        self.addTitleLabel()
-        self.addSubtitleLabel()
-        self.addRatingLabel()
+        self.addtrackNameLabel()
+        self.addartistNameLabel()
+        self.addcollectionNameLabel()
     }
     
-    private func addTitleLabel() {
-        self.contentView.addSubview(self.titleLabel)
+    private func addtrackNameLabel() {
+        self.contentView.addSubview(self.trackName)
         NSLayoutConstraint.activate([
-            self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8.0),
-            self.titleLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 12.0),
-            self.titleLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -40.0)
+            self.trackName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8.0),
+            self.trackName.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 12.0),
+            self.trackName.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -40.0)
             ])
     }
     
-    private func addSubtitleLabel() {
-        self.contentView.addSubview(self.subtitleLabel)
+    private func addartistNameLabel() {
+        self.contentView.addSubview(self.artistName)
         NSLayoutConstraint.activate([
-            self.subtitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 4.0),
-            self.subtitleLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 12.0),
-            self.subtitleLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -40.0)
+            self.artistName.topAnchor.constraint(equalTo: self.trackName.bottomAnchor, constant: 4.0),
+            self.artistName.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 12.0),
+            self.artistName.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -40.0)
             ])
     }
     
-    private func addRatingLabel() {
-        self.contentView.addSubview(self.ratingLabel)
+    private func addcollectionNameLabel() {
+        self.contentView.addSubview(self.collectionName)
         NSLayoutConstraint.activate([
-            self.ratingLabel.topAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: 4.0),
-            self.ratingLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 12.0),
-            self.ratingLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -40.0)
+            self.collectionName.topAnchor.constraint(equalTo: self.artistName.bottomAnchor, constant: 4.0),
+            self.collectionName.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 12.0),
+            self.collectionName.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -40.0)
             ])
     }
 }
